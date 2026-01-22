@@ -2,13 +2,79 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/sushi-2.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>bloleo.github.io</title>
-    <script type="module" crossorigin src="./assets/index-CiHjrCMM.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-XlyKSLnJ.css">
+    <title>Our little journey so far</title>
   </head>
-  <body>
-    <div id="app"></div>
+  
+  <body class="min-h-screen bg-red-100 flex items-center justify-center">
+
+    <!-- Scene 1 -->
+    <section
+      id="scene-mail"
+      class="scene scene--active flex flex-col items-center justify-center"
+    >
+      <div class="text-3xl font-bold font-[Oswald] text-neutral-800 mb-4">
+        You have mail!
+      </div>
+
+      <img
+        id="mailbox"
+        src="/mailbox.png"
+        alt="Mailbox image"
+        class="w-20 h-auto cursor-pointer transition-transform hover:scale-110"
+      />
+    </section>
+
+    <!-- Scene 2 -->
+    <section
+      id="scene-letter"
+      class="scene flex flex-col items-center justify-center"
+    >
+      <div class="max-w-md text-center space-y-4 font-[Oswald] text-neutral-800">
+
+        <!-- Heading -->
+        <div class="flex items-center justify-center gap-2 text-3xl font-bold">
+          <h2
+            id="letter-title"
+            class="text-3xl font-bold font-[Oswald] text-neutral-800 text-center"
+          >
+            ¡Hola bombón!
+          </h2>
+<!--           <img
+            id="bombon"
+            src="/bombon.png"
+            alt="bombon image"
+            class="w-20 h-auto inline-block"
+          /> -->
+        </div>
+
+        <!-- parrafo 1 -->
+        <p id="p2" class="text-center"></p> 
+        
+        <!-- parrafo 2 -->
+        <p class="text-center">
+          <span id="p1-before"></span>
+          <span id="distance" class="font-bold"></span>
+          <span id="p1-after"></span>
+        </p>
+
+        <p id="p3" class="text-center"></p>
+        <p id="p4" class="text-center"></p>
+
+
+
+      </div>
+    </section>
+
+
+    <script type="module" src="/src/main.js"></script>
   </body>
+
+
+
+
 </html>
+
+  
+
