@@ -4,77 +4,87 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/sushi-2.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Agregar Google Fonts para más opciones classy -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
     <title>Our little journey so far</title>
   </head>
   
-  <body class="min-h-screen bg-red-100 flex items-center justify-center">
+  <body class="h-screen bg-red-50 overflow-hidden">
 
     <!-- Scene 1 -->
     <section
       id="scene-mail"
-      class="scene scene--active flex flex-col items-center justify-center"
-    >
-      <div class="text-3xl font-bold font-[Oswald] text-neutral-800 mb-4">
-        You have mail!
-      </div>
+      class="scene scene--active flex flex-col items-center justify-center py-12 md:py-16"
+      >
+        <div class="text-4xl md:text-5xl font-bold font-playfair text-neutral-800 mb-8 text-center">
+          You have mail!
+        </div>
 
-      <img
-        id="mailbox"
-        src="/mailbox.png"
-        alt="Mailbox image"
-        class="w-20 h-auto cursor-pointer transition-transform hover:scale-110"
-      />
-    </section>
+        <img
+          id="mailbox"
+          src="/mailbox.png"
+          alt="Mailbox image"
+          class="w-28 h-auto cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-3"
+        />
+        
+        <p class="mt-6 text-neutral-600 font-montserrat text-lg">Click en el buzón o presiona Enter</p>
+      </section>
 
-    <!-- Scene 2 -->
+    <!-- Scene 2 - CORREGIDO (centrado y bien ajustado) -->
     <section
       id="scene-letter"
       class="scene flex flex-col items-center justify-center"
     >
-      <div class="max-w-md text-center space-y-4 font-[Oswald] text-neutral-800">
+      <div class="letter-container max-w-md text-center text-neutral-800 px-4">
+        
+        <!-- Título más pequeño -->
+        <h2
+          id="letter-title"
+          class="mb-6 text-4xl md:text-5xl font-playfair font-bold tracking-tight leading-tight"
+        >
+          ¡Hola bombón!
+        </h2>
 
-        <!-- Heading -->
-        <div class="flex items-center justify-center gap-2 text-3xl font-bold">
-          <h2
-            id="letter-title"
-            class="text-3xl font-bold font-[Oswald] text-neutral-800 text-center"
-          >
-            ¡Hola bombón!
-          </h2>
-<!--           <img
-            id="bombon"
-            src="/bombon.png"
-            alt="bombon image"
-            class="w-20 h-auto inline-block"
-          /> -->
+        <!-- Texto MÁS PEQUEÑO -->
+        <div id="text-sequence" class="space-y-3 text-sm md:text-base leading-snug">
+          <p class="seq-line">No solo sos bombón, sino también, ¡cumpleañero!</p>
+          <p class="seq-line">Y si bien actualmente nos separan unos poquitos ...</p>
+
+          <!-- Contador más pequeño -->
+          <div id="distance-counter" class="seq-line distance-counter-container my-3">
+            <div class="text-center py-2">
+              <div class="text-2xl md:text-3xl font-bold text-violet-600 font-[Oswald]">
+                <span id="distance-number">0</span>
+                <span class="text-lg md:text-xl ml-1">km</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="seq-line">no quise dejar que eso me detuviera en mi propósito<br>
+            de expresar mi amor por vos de la mejor manera que se:</p>
+          <p class="seq-line">con regalos!</p>
+          <p class="seq-line">Es por eso que se me ocurrió armar esta paginita para vos,</p>
+          <p class="seq-line">con la idea de que te haga sentir como si estuviera ahí al lado tuyo,</p>
+          <p class="seq-line">abrazándote muy pero muy fuerte y llenándote la cara de besitos.</p>
+          <p class="seq-line font-bold">¡Espero que te guste!</p>
         </div>
 
-        <!-- parrafo 1 -->
-        <p id="p2" class="text-center"></p> 
-        
-        <!-- parrafo 2 -->
-        <p class="text-center">
-          <span id="p1-before"></span>
-          <span id="distance" class="font-bold"></span>
-          <span id="p1-after"></span>
-        </p>
-
-        <p id="p3" class="text-center"></p>
-        <p id="p4" class="text-center"></p>
-
-
+        <!-- Botón más pequeño -->
+        <div id="next-button-container" class="mt-4 opacity-0 transition-opacity duration-300">
+          <button
+            id="next-line-btn"
+            class="px-4 py-2 bg-violet-600 text-white font-[Oswald] font-bold text-sm rounded hover:bg-violet-700 transition-colors cursor-pointer"
+          >
+            Siguiente línea →
+          </button>
+          <p class="text-xs text-neutral-600 mt-1">Presiona el botón o presiona Enter</p>
+        </div>
 
       </div>
     </section>
 
-
     <script type="module" src="/src/main.js"></script>
   </body>
-
-
-
-
 </html>
-
-  
-

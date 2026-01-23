@@ -39,10 +39,146 @@
   }
 }
 
+/* Add to style.css - simplest fix */
+/* .max-w-md {
+  min-height: 500px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
+
+/* Or add this to prevent content shift */
+#scene-letter .max-w-md p {
+  min-height: 1.5em;
+  margin: 0.5rem 0;
+}
 
 .text-container {
-  min-height: 300px; /* adjust once, never worry again */
+  min-height: 300px; 
 }
+
+.letter-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#letter-title {
+  display: block;
+  font-size: 2.75rem;      /* force header scale */
+  line-height: 1.1;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.text-line {
+  margin: 0.5rem 0;
+  min-height: 1.5em; /* Fixed height for each line */
+}
+
+
+
+/* Allow wrapping only after typing is complete */
+#scene-letter p.typewriter-complete, 
+#scene-letter span.typewriter-complete {
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+#scene-letter .seq-line {
+  min-height: 1.5em;
+  margin: 0.5rem 0;
+}
+
+
+#scene-letter .max-w-md {
+  max-width: 28rem; /* Equivalent to max-w-md in Tailwind */
+  width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* During typing - prevent wrapping */
+.typewriter-typing {
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* After typing - allow normal wrapping */
+.typewriter-complete {
+  white-space: normal;
+  display: block;
+}
+
+/* Container with enough height */
+.text-container {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+/* Fixed text block */
+#fixed-text {
+  position: relative;
+  min-height: 200px;
+}
+
+/* Fade-in lines */
+.fade-line {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeLineIn 0.8s ease forwards;
+}
+
+/* Staggered animation */
+.fade-line:nth-child(1) { animation-delay: 0.3s; }
+.fade-line:nth-child(2) { animation-delay: 0.9s; }
+.fade-line:nth-child(3) { animation-delay: 1.5s; }
+.fade-line:nth-child(4) { animation-delay: 2.1s; }
+
+@keyframes fadeLineIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Sequential text container */
+#text-sequence {
+  position: relative;
+}
+
+/* Initial hidden state */
+.seq-line {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin: 0.75rem 0;
+}
+
+/* Visible state */
+.seq-line.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
 
 
 /* 

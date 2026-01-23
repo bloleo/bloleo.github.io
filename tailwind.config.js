@@ -4,8 +4,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans],
-        display: ['Oswald', ...defaultTheme.fontFamily.sans],
+        playfair: ['"Playfair Display"', 'serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+        crimson: ['"Crimson Text"', 'serif'],
       },
     },
   },
