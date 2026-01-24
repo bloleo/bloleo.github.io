@@ -7,6 +7,7 @@ module.exports = {
         playfair: ['"Playfair Display"', 'serif'],
         montserrat: ['Montserrat', 'sans-serif'],
         crimson: ['"Crimson Text"', 'serif'],
+        caveat: ['Caveat', 'sans-serif'],
       },
     },
   },

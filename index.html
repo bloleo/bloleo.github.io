@@ -8,17 +8,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapsis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <title>Our little journey so far</title>
   </head>
   
-  <body class="h-screen bg-red-50 overflow-hidden">
+  <body class="h-screen bg-red-200 overflow-hidden">
 
     <!-- Scene 1 -->
     <section
       id="scene-mail"
       class="scene scene--active flex flex-col items-center justify-center py-12 md:py-16"
       >
-        <div class="text-4xl md:text-5xl font-bold font-playfair text-neutral-800 mb-8 text-center">
+        <div class="text-4xl md:text-5xl font-bold font-caveat text-neutral-800 mb-8 text-center">
           You have mail!
         </div>
 
@@ -29,10 +33,9 @@
           class="w-28 h-auto cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-3"
         />
         
-        <p class="mt-6 text-neutral-600 font-montserrat text-lg">Click en el buzón o presiona Enter</p>
       </section>
 
-    <!-- Scene 2 - CORREGIDO (centrado y bien ajustado) -->
+    <!-- Scene 2 -->
     <section
       id="scene-letter"
       class="scene flex flex-col items-center justify-center"
@@ -42,9 +45,9 @@
         <!-- Título más pequeño -->
         <h2
           id="letter-title"
-          class="mb-6 text-4xl md:text-5xl font-playfair font-bold tracking-tight leading-tight"
+          class="mb-6 text-4xl md:text-5xl font-caveat font-bold tracking-tight leading-tight text-amber-950"
         >
-          ¡Hola bombón!
+          Hola bombón💖
         </h2>
 
         <!-- Texto MÁS PEQUEÑO -->
@@ -55,7 +58,7 @@
           <!-- Contador más pequeño -->
           <div id="distance-counter" class="seq-line distance-counter-container my-3">
             <div class="text-center py-2">
-              <div class="text-2xl md:text-3xl font-bold text-violet-600 font-[Oswald]">
+              <div class="text-2xl md:text-3xl font-bold text-amber-950 font-[Oswald]">
                 <span id="distance-number">0</span>
                 <span class="text-lg md:text-xl ml-1">km</span>
               </div>
@@ -63,25 +66,128 @@
           </div>
 
           <p class="seq-line">no quise dejar que eso me detuviera en mi propósito<br>
-            de expresar mi amor por vos de la mejor manera que se:</p>
-          <p class="seq-line">con regalos!</p>
+            de expresar mi amor por vos de la mejor manera que sé:</p>
+          <p class="seq-line font-semibold text-xl text-amber-950"> <span >con regalos</span>🎁</p> 
           <p class="seq-line">Es por eso que se me ocurrió armar esta paginita para vos,</p>
           <p class="seq-line">con la idea de que te haga sentir como si estuviera ahí al lado tuyo,</p>
           <p class="seq-line">abrazándote muy pero muy fuerte y llenándote la cara de besitos.</p>
-          <p class="seq-line font-bold">¡Espero que te guste!</p>
+          <p class="seq-line font-bold text-amber-950">¡Espero que te guste!</p>
+          <p class="seq-line text-xs text-neutral-600 mt-2">(tanto como a mí me gusta tu carbonara)</p>
         </div>
 
         <!-- Botón más pequeño -->
-        <div id="next-button-container" class="mt-4 opacity-0 transition-opacity duration-300">
-          <button
+        <div id="next-button-container" class="mt-6 opacity-0 transition-opacity duration-300 flex flex-col items-center">
+          <img
             id="next-line-btn"
-            class="px-4 py-2 bg-violet-600 text-white font-[Oswald] font-bold text-sm rounded hover:bg-violet-700 transition-colors cursor-pointer"
-          >
-            Siguiente línea →
-          </button>
-          <p class="text-xs text-neutral-600 mt-1">Presiona el botón o presiona Enter</p>
+            src="/carbonara.png"
+            alt="Next line"
+            class="w-20 cursor-pointer pasta-button"
+          />
+          <p class="text-xs text-neutral-600 mt-2">Trust the carbonara</p>
         </div>
 
+      </div>
+    </section>
+    
+    <section
+      id="scene-3"
+      class="scene flex items-center justify-center"
+    >
+      <div class="text-center max-w-2xl px-4">
+        <!-- Título -->
+        <h2 class="text-4xl md:text-5xl font-caveat font-bold text-amber-950 mb-8">
+          Fun facts
+        </h2>
+        
+        <!-- Subtítulo -->
+        <p class="text-xl md:text-2xl font-caveat text-amber-900 mb-8">
+          Sabías que...
+        </p>
+        
+        <!-- Contador de días -->
+        <div id="days-counter" class="mb-10">
+          <p class="text-lg md:text-xl mb-4 text-neutral-700">
+            "Pasaron un total de <span id="days-placeholder">_____</span> días desde nuestra primera cita (19 de noviembre 2024) hasta hoy"
+          </p>
+          
+          <!-- Botones de adivinanza -->
+          <div id="guess-buttons" class="flex flex-wrap justify-center gap-4 mb-6 seq-item">
+            <button class="guess-btn bg-amber-100 hover:bg-amber-200 text-amber-950 px-6 py-3 rounded-lg shadow-md transition-all duration-300 hover:scale-105 cursor-pointer font-semibold border-2 border-amber-300">
+              <span id="days-option-1">0</span> días
+            </button>
+            <button class="guess-btn bg-amber-100 hover:bg-amber-200 text-amber-950 px-6 py-3 rounded-lg shadow-md transition-all duration-300 hover:scale-105 cursor-pointer font-semibold border-2 border-amber-300">
+              <span id="days-option-2">0</span> días
+            </button>
+            <button class="guess-btn bg-amber-100 hover:bg-amber-200 text-amber-950 px-6 py-3 rounded-lg shadow-md transition-all duration-300 hover:scale-105 cursor-pointer font-semibold border-2 border-amber-300">
+              <span id="days-option-3">0</span> días
+            </button>
+          </div>
+          
+          <!-- Mensaje de feedback -->
+          <div id="guess-feedback" class="text-lg font-semibold seq-item opacity-0">
+            <p id="correct-message" class="text-green-700 hidden">¡Correcto! 🎉 Efectivamente, pasaron <span id="correct-days"></span> días</p>
+            <p id="incorrect-message" class="text-red-700 hidden">¡Ups! Ese no es, probá con otro 😉</p>
+          </div>
+        </div>
+        
+        <!-- Lista de logros -->
+        <div id="achievements-list" class="text-left space-y-6 max-w-xl mx-auto">
+          <div class="seq-item">
+            <p class="text-lg md:text-xl text-neutral-800">
+              <span class="font-bold text-amber-800">Y en esos días...</span>
+            </p>
+          </div>
+          
+          <div class="seq-item pl-4">
+            <p class="text-lg md:text-xl text-neutral-800">
+              • Intercambiamos un aproximado de <span class="font-bold text-amber-800">215 "te amo"</span> (por chat) 💌
+            </p>
+          </div>
+          
+          <div class="seq-item pl-4">
+            <p class="text-lg md:text-xl text-neutral-800 mb-3">
+              • Vimos varias series y películas:
+            </p>
+            
+            <!-- Carrusel de imágenes -->
+            <div id="media-carousel" class="flex gap-4 overflow-x-auto py-2 px-2 seq-item">
+              <img src="/placeholder-peli1.jpg" alt="Película 1" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
+              <img src="/placeholder-peli2.jpg" alt="Película 2" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
+              <img src="/placeholder-serie1.jpg" alt="Serie 1" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
+              <img src="/placeholder-serie2.jpg" alt="Serie 2" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
+              <img src="/placeholder-peli3.jpg" alt="Película 3" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
+            </div>
+          </div>
+          
+          <div class="seq-item pl-4">
+            <p class="text-lg md:text-xl text-neutral-800">
+              • Compartimos nuestro <span class="font-bold text-amber-800">primer viaje solos</span> ✈️
+            </p>
+          </div>
+          
+          <div class="seq-item pl-4">
+            <p class="text-lg md:text-xl text-neutral-800">
+              • Nos <span class="font-bold text-amber-800">recibimos</span> 🎓
+            </p>
+          </div>
+          
+          <div class="seq-item pl-4">
+            <p class="text-lg md:text-xl text-neutral-800">
+              • Y nos sacamos <span class="font-bold text-amber-800">varias fotitos</span> 📸
+            </p>
+          </div>
+        </div>
+        
+        <!-- Botón para avanzar -->
+        <div id="scene3-next-btn" class="mt-10 seq-item opacity-0 transition-opacity duration-500">
+          <img
+            id="scene3-continue-btn"
+            src="/carbonara.png"
+            alt="Continue"
+            class="w-20 cursor-pointer pasta-button mx-auto"
+          />
+          <p class="text-xs text-neutral-600 mt-2">Continuar con la carbonara</p>
+        </div>
       </div>
     </section>
 

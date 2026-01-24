@@ -39,13 +39,7 @@
   }
 }
 
-/* Add to style.css - simplest fix */
-/* .max-w-md {
-  min-height: 500px; 
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
+
 
 /* Or add this to prevent content shift */
 #scene-letter .max-w-md p {
@@ -151,7 +145,17 @@
 
 
 
+.pasta-button {
+  transition: transform 0.3s ease;
+}
 
+.pasta-button:hover {
+  transform: rotate(4deg) scale(1.05);
+}
+
+.pasta-button:active {
+  transform: rotate(-6deg) scale(0.95);
+}
 
 
 
@@ -178,6 +182,61 @@
 
 
 
+
+/* 
+  ESCENA 3
+*/
+
+/* Estilos para la escena 3 */
+#scene-3 .seq-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin: 1rem 0;
+}
+
+#scene-3 .seq-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilos para el carrusel */
+#media-carousel {
+  scrollbar-width: thin;
+  scrollbar-color: #fbbf24 transparent;
+}
+
+#media-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+#media-carousel::-webkit-scrollbar-track {
+  background: #fef3c7;
+  border-radius: 4px;
+}
+
+#media-carousel::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 4px;
+}
+
+#media-carousel::-webkit-scrollbar-thumb:hover {
+  background: #f59e0b;
+}
+
+/* Estilos para botones de adivinanza */
+.guess-btn {
+  transition: all 0.3s ease;
+}
+
+.guess-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* Animación de fade para feedback */
+#guess-feedback {
+  transition: opacity 0.5s ease;
+}
 
 
 
