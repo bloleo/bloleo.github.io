@@ -114,39 +114,35 @@ class SceneManager {
     });
   }
 
-  transitionTo(nextSceneId, delay = 1000) {
-    const currentScene = this.scenes.get(this.currentSceneId);
-    const nextScene = this.scenes.get(nextSceneId);
+  transitionTo(sceneId, duration = 800, isBack = false) {
+  const oldScene = this.scenes.get(this.currentSceneId);
+  const newScene = this.scenes.get(sceneId);
 
-    if (!nextScene) {
-      console.error(`Scene ${nextSceneId} not found`);
-      return;
-    }
+  if (!newScene) return;
 
-    if (currentScene) {
-      if (currentScene.onExit) currentScene.onExit();
-      
-      currentScene.element.classList.remove("scene--fade-in");
-      void currentScene.element.offsetWidth;
-      currentScene.element.classList.add("scene--fade-out");
-
-      setTimeout(() => {
-        currentScene.element.classList.remove("scene--active", "scene--fade-out");
-      }, delay);
-    }
-
+  // 1. Desactivar escena anterior
+  if (oldScene) {
+    oldScene.element.classList.add('scene--fade-out');
     setTimeout(() => {
-      nextScene.element.classList.remove("scene--fade-out");
-      void nextScene.element.offsetWidth;
-      nextScene.element.classList.add("scene--active", "scene--fade-in");
-
-      this.currentSceneId = nextSceneId;
-
-      setTimeout(() => {
-        if (nextScene.onEnter) nextScene.onEnter();
-      }, 600);
-    }, currentScene ? delay : 0);
+      oldScene.element.classList.remove('scene--active', 'scene--fade-out');
+      oldScene.element.style.display = 'none';
+    }, duration);
   }
+
+  // 2. Activar nueva escena
+  this.currentSceneId = sceneId;
+  newScene.element.style.display = 'flex';
+  
+  // LA CLAVE: Resetear el scroll a la posición 0 apenas aparece la escena
+  window.scrollTo({ top: 0, behavior: 'instant' }); 
+  
+  newScene.element.classList.add('scene--active', 'scene--fade-in');
+
+  if (newScene.onEnter) newScene.onEnter();
+  
+  // Actualizar visibilidad del botón de volver
+  updateBackButtonVisibility();
+}
 
   getCurrentSceneId() {
     return this.currentSceneId;
@@ -169,45 +165,9 @@ sceneManager.registerScene('scene-mail', {
 });
 
 mailbox.addEventListener("click", () => {
-  // Primero transicionar la escena (sin esperar al audio)
-  mailbox.style.transform = 'scale(0.9) rotate(-10deg)';
-  mailbox.style.transition = 'all 0.3s ease';
-  sceneManager.transitionTo('scene-letter');
-  
-  // Intentar reproducir música asíncronamente (no bloquear si falla)
   if (music && !isMusicPlaying) {
-    fadeInAudio(music).catch(err => {
-      console.log('Audio autoplay blocked:', err);
-      // Mostrar controles incluso si falla
-      setTimeout(() => {
-        const musicControls = document.getElementById('music-controls');
-        if (musicControls) {
-          musicControls.classList.remove('opacity-0');
-          musicControls.classList.add('opacity-100');
-        }
-      }, 1000);
-    });
+    fadeInAudio(music);
     isMusicPlaying = true;
-  }
-});
-
-async function fadeInAudio(audioElement) {
-  try {
-    audioElement.volume = 0;
-    await audioElement.play(); // Usar await para manejar la promesa
-    
-    let vol = 0;
-    const targetVol = 0.3;
-    const interval = setInterval(() => {
-      if (vol < targetVol) {
-        vol += 0.03;
-        audioElement.volume = Math.min(vol, targetVol);
-      } else {
-        clearInterval(interval);
-      }
-    }, 200);
-    
-    // Mostrar controles después de que el audio comienza
     setTimeout(() => {
       const musicControls = document.getElementById('music-controls');
       if (musicControls) {
@@ -215,10 +175,26 @@ async function fadeInAudio(audioElement) {
         musicControls.classList.add('opacity-100');
       }
     }, 1000);
-  } catch (error) {
-    console.log('Could not play audio:', error);
-    throw error; // Re-lanzar para que el catch externo lo maneje
   }
+
+  mailbox.style.transform = 'scale(0.9) rotate(-10deg)';
+  mailbox.style.transition = 'all 0.3s ease';
+  sceneManager.transitionTo('scene-letter');
+});
+
+function fadeInAudio(audioElement) {
+  audioElement.volume = 0;
+  audioElement.play();
+  let vol = 0;
+  const targetVol = 0.3;
+  const interval = setInterval(() => {
+    if (vol < targetVol) {
+      vol += 0.03;
+      audioElement.volume = Math.min(vol, targetVol);
+    } else {
+      clearInterval(interval);
+    }
+  }, 200);
 }
 
 function setupMusicControls() {

@@ -2,18 +2,31 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities"; */
 
+html, body {
+  height: 100%;
+  /* Esto evita que el scroll de una escena afecte a la otra durante la animación */
+  overflow-x: hidden; 
+}
 
 .scene {
-  display: none;
+  display: none !important; /* Por defecto, nada existe en el flujo */
   width: 100%;
   min-height: 100vh;
-  padding: 2rem 1rem;
   flex-direction: column;
+  opacity: 0;
 }
 
 .scene--active {
-  display: flex;
+  display: flex !important; /* Solo la activa recupera su lugar */
+  opacity: 1;
 }
+
+/* Evita que el body sea el que scrollee si hay problemas */
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
 
 .scene--fade-out {
   animation: fadeOut 1.2s ease forwards;
@@ -475,6 +488,6 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
-  }
+  
 }
  */
