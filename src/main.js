@@ -1120,12 +1120,21 @@ document.addEventListener('DOMContentLoaded', () => {
   updateBackButton();
 });
 
-// Forzar carga del favicon
+// Script para forzar el favicon del sushi
 (function() {
-  const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
-  link.type = 'image/svg+xml';
-  link.rel = 'icon';
-  // Usamos el mismo truco de quitar la barra para GitHub Pages
-  link.href = 'sushi-2.svg'; 
-  document.getElementsByTagName('head')[0].appendChild(link);
+    const head = document.head || document.getElementsByTagName('head')[0];
+    
+    // Eliminamos cualquier favicon previo que pueda estar molestando
+    const existingFavicons = document.querySelectorAll("link[rel*='icon']");
+    existingFavicons.forEach(el => el.parentNode.removeChild(el));
+
+    // Creamos el nuevo
+    const link = document.createElement('link');
+    link.type = 'image/svg+xml';
+    link.rel = 'icon';
+    // Usamos ruta relativa sin la barra inicial para GitHub Pages
+    link.href = 'sushi-2.svg?v=2';
+    
+    head.appendChild(link);
+    console.log("Sushi favicon forzado");
 })();
