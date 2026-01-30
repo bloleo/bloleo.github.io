@@ -1119,3 +1119,13 @@ document.addEventListener('DOMContentLoaded', () => {
   setupMusicControls();
   updateBackButton();
 });
+
+// Forzar carga del favicon
+(function() {
+  const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+  link.type = 'image/svg+xml';
+  link.rel = 'icon';
+  // Usamos el mismo truco de quitar la barra para GitHub Pages
+  link.href = 'sushi-2.svg'; 
+  document.getElementsByTagName('head')[0].appendChild(link);
+})();
