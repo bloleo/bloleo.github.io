@@ -1,19 +1,18 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 @import "tailwindcss/preflight";
-@import "tailwindcss/utilities";
+@import "tailwindcss/utilities"; */
 
 
 .scene {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  opacity: 0;
-  pointer-events: none;
+  display: none; /* Quitamos position: absolute */
+  width: 100%;
+  min-height: 100vh;
+  padding: 2rem 1rem; /* Agregamos aire arriba y abajo */
+  flex-direction: column;
 }
 
 .scene--active {
-  opacity: 1;
-  pointer-events: auto;
+  display: flex; /* Solo la escena activa ocupa espacio */
 }
 
 .scene--fade-out {
@@ -180,6 +179,26 @@
   transform: translateY(0);
 }
 
+/* 
+  ESCENA 5: FINAL MESSAGE
+*/
+.final-seq-line {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  margin: 0.75rem 0;
+}
+
+.final-seq-line.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.final-message-container {
+  display: flex;
+  flex-direction: column;
+}
+
 
 
 
@@ -239,6 +258,84 @@
 }
 
 
+
+
+
+/* Carousel Arrows Hover Effect */
+#prev-arrow, #next-arrow {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#prev-arrow:hover, #next-arrow:hover {
+  transform: translateY(-50%) scale(1.05); /* Mantiene su posición vertical pero crece un poquito */
+  filter: brightness(1.1);
+}
+
+#prev-arrow:active, #next-arrow:active {
+  transform: translateY(-50%) scale(0.95); /* Efecto de hundido al clickear */
+}
+
+/* Accordion smooth transition */
+#movies-accordion {
+  transition: max-height 0.5s ease-in-out;
+}
+
+/* Dots animation */
+#carousel-dots > div {
+  transition: all 0.3s ease;
+}
+
+#carousel-content {
+  min-height: auto !important; /* Quita el min-height que tenías */
+  height: auto;
+  max-height: 60vh; /* Reducido de 70vh a 60vh para dar espacio al botón */
+  padding: 2rem 1rem 3rem 1rem; /* Más padding abajo */
+  animation: fadeIn 0.5s ease; /* Carousel content fade in */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #prev-arrow:hover {
+    transform: translateY(-50%) translateX(-12px) scale(1.05);
+  }
+  
+  #next-arrow:hover {
+    transform: translateY(-50%) translateX(12px) scale(1.05);
+  }
+}
+
+/* Animación suave de flotación */
+@keyframes sushiFloat {
+  0%, 100% { transform: translateY(-50%) translateY(0); }
+  50% { transform: translateY(-50%) translateY(-5px); }
+}
+
+#prev-arrow, #next-arrow {
+  animation: sushiFloat 3s ease-in-out infinite;
+}
+
+/* Efecto al pasar el mouse (sin desplazamiento lateral) */
+.sushi-hover-effect:hover {
+  filter: brightness(1.2) drop-shadow(0 0 8px rgba(251, 191, 36, 0.4));
+  cursor: pointer;
+}
+
+/* Efecto al hacer clic */
+.sushi-hover-effect:active {
+  transform: translateY(-50%) scale(0.9) !important;
+}
 
 /* 
 @keyframes mailbox-fade {

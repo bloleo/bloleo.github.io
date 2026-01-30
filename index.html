@@ -4,192 +4,230 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/sushi-2.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Agregar Google Fonts para más opciones classy -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
-    
-    <link rel="preconnect" href="https://fonts.googleapsis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              caveat: ['Caveat', 'cursive'],
+            },
+          },
+        },
+      }
+    </script>
     <title>Our little journey so far</title>
   </head>
   
-  <body class="h-screen bg-red-200 overflow-hidden">
+  <body class="min-h-screen overflow-y-auto bg-blue-200">
 
-    <!-- Scene 1 -->
-    <section
-      id="scene-mail"
-      class="scene scene--active flex flex-col items-center justify-center py-12 md:py-16"
-      >
-        <div class="text-4xl md:text-5xl font-bold font-caveat text-neutral-800 mb-8 text-center">
-          You have mail!
-        </div>
+    <!-- Botón de volver a escena anterior -->
+    <button id="back-button" class="fixed top-4 left-4 bg-white/70 backdrop-blur-sm text-neutral-700 hover:text-amber-900 px-3 py-2 rounded-lg shadow-md transition-all duration-300 hover:scale-105 z-50 opacity-0 pointer-events-none flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      <span class="text-sm font-caveat">Volver</span>
+    </button>
 
-        <img
-          id="mailbox"
-          src="/mailbox.png"
-          alt="Mailbox image"
-          class="w-28 h-auto cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-3"
-        />
-        
-      </section>
+    <!-- Scene 1: Mailbox -->
+    <section id="scene-mail" class="scene scene--active flex flex-col items-center justify-center py-12 md:py-16">
+      <div class="text-4xl md:text-5xl font-bold font-caveat text-neutral-800 mb-8 text-center">
+        You have mail!
+      </div>
+      <img id="mailbox" src="/mailbox.png" alt="Mailbox image" class="w-28 h-auto cursor-pointer transition-all duration-300 hover:scale-110 hover:rotate-3" />
+    </section>
 
-    <!-- Scene 2 -->
-    <section
-      id="scene-letter"
-      class="scene flex flex-col items-center justify-center"
-    >
-      <div class="letter-container max-w-md text-center text-neutral-800 px-4">
-        
-        <!-- Título más pequeño -->
-        <h2
-          id="letter-title"
-          class="mb-6 text-4xl md:text-5xl font-caveat font-bold tracking-tight leading-tight text-amber-950"
-        >
+    <!-- Scene 2: Letter -->
+    <section id="scene-letter" class="scene flex flex-col items-center justify-center py-6">
+      <div class="letter-container max-w-3xl w-full text-center text-neutral-800 px-8">
+        <h2 id="letter-title" class="mb-6 text-4xl md:text-5xl font-caveat font-bold tracking-tight leading-tight text-amber-950">
           Hola bombón💖
         </h2>
 
-        <!-- Texto MÁS PEQUEÑO -->
-        <div id="text-sequence" class="space-y-3 text-sm md:text-base leading-snug">
+        <div id="text-sequence" class="space-y-3 text-lg md:text-xl leading-snug font-caveat">
           <p class="seq-line">No solo sos bombón, sino también, ¡cumpleañero!</p>
           <p class="seq-line">Y si bien actualmente nos separan unos poquitos ...</p>
 
-          <!-- Contador más pequeño -->
           <div id="distance-counter" class="seq-line distance-counter-container my-3">
             <div class="text-center py-2">
-              <div class="text-2xl md:text-3xl font-bold text-amber-950 font-[Oswald]">
+              <div class="text-3xl md:text-4xl font-bold text-amber-950 font-caveat">
                 <span id="distance-number">0</span>
-                <span class="text-lg md:text-xl ml-1">km</span>
+                <span class="text-xl md:text-2xl ml-1">km</span>
               </div>
             </div>
           </div>
 
           <p class="seq-line">no quise dejar que eso me detuviera en mi propósito<br>
             de expresar mi amor por vos de la mejor manera que sé:</p>
-          <p class="seq-line font-semibold text-xl text-amber-950"> <span >con regalos</span>🎁</p> 
+          <p class="seq-line font-semibold text-2xl text-amber-950"><span>con regalos</span>🎁</p> 
           <p class="seq-line">Es por eso que se me ocurrió armar esta paginita para vos,</p>
           <p class="seq-line">con la idea de que te haga sentir como si estuviera ahí al lado tuyo,</p>
           <p class="seq-line">abrazándote muy pero muy fuerte y llenándote la cara de besitos.</p>
           <p class="seq-line font-bold text-amber-950">¡Espero que te guste!</p>
-          <p class="seq-line text-xs text-neutral-600 mt-2">(tanto como a mí me gusta tu carbonara)</p>
+          <p class="seq-line text-sm text-neutral-600 mt-2">(tanto como a mí me gusta tu carbonara)</p>
         </div>
 
-        <!-- Botón más pequeño -->
-        <div id="next-button-container" class="mt-6 opacity-0 transition-opacity duration-300 flex flex-col items-center">
-          <img
-            id="next-line-btn"
-            src="/carbonara.png"
-            alt="Next line"
-            class="w-20 cursor-pointer pasta-button"
-          />
-          <p class="text-xs text-neutral-600 mt-2">Trust the carbonara</p>
+        <div id="next-button-container" class="mt-4 opacity-0 transition-opacity duration-300 flex flex-col items-center">
+          <img id="next-line-btn" src="/carbonara.png" alt="Next line" class="w-16 cursor-pointer pasta-button" />
+          <p class="text-sm text-neutral-600 mt-2">Trust the carbonara</p>
         </div>
-
       </div>
     </section>
     
-    <section
-      id="scene-3"
-      class="scene flex items-center justify-center"
-    >
+    <!-- Scene 3: Pop Quiz -->
+    <section id="scene-3" class="scene flex items-center justify-center">
       <div class="text-center max-w-2xl px-4">
-        <!-- Título -->
-        <h2 class="text-4xl md:text-5xl font-caveat font-bold text-amber-950 mb-8">
-          Fun facts
+        <h2 class="mb-6 text-4xl md:text-5xl font-caveat font-bold tracking-tight leading-tight text-amber-950"> 
+          POP QUIZ
         </h2>
         
-        <!-- Subtítulo -->
-        <p class="text-xl md:text-2xl font-caveat text-amber-900 mb-8">
-          Sabías que...
+        <p class="text-2xl md:text-3xl font-caveat text-amber-900 mb-12">
+          ¿Cuántos días pasaron desde nuestra primera cita hasta hoy?
         </p>
         
-        <!-- Contador de días -->
-        <div id="days-counter" class="mb-10">
-          <p class="text-lg md:text-xl mb-4 text-neutral-700">
-            "Pasaron un total de <span id="days-placeholder">_____</span> días desde nuestra primera cita (19 de noviembre 2024) hasta hoy"
-          </p>
-          
-          <!-- Botones de adivinanza -->
-          <div id="guess-buttons" class="flex flex-wrap justify-center gap-4 mb-6 seq-item">
-            <button class="guess-btn bg-amber-100 hover:bg-amber-200 text-amber-950 px-6 py-3 rounded-lg shadow-md transition-all duration-300 hover:scale-105 cursor-pointer font-semibold border-2 border-amber-300">
-              <span id="days-option-1">0</span> días
-            </button>
-            <button class="guess-btn bg-amber-100 hover:bg-amber-200 text-amber-950 px-6 py-3 rounded-lg shadow-md transition-all duration-300 hover:scale-105 cursor-pointer font-semibold border-2 border-amber-300">
-              <span id="days-option-2">0</span> días
-            </button>
-            <button class="guess-btn bg-amber-100 hover:bg-amber-200 text-amber-950 px-6 py-3 rounded-lg shadow-md transition-all duration-300 hover:scale-105 cursor-pointer font-semibold border-2 border-amber-300">
-              <span id="days-option-3">0</span> días
-            </button>
-          </div>
-          
-          <!-- Mensaje de feedback -->
-          <div id="guess-feedback" class="text-lg font-semibold seq-item opacity-0">
-            <p id="correct-message" class="text-green-700 hidden">¡Correcto! 🎉 Efectivamente, pasaron <span id="correct-days"></span> días</p>
-            <p id="incorrect-message" class="text-red-700 hidden">¡Ups! Ese no es, probá con otro 😉</p>
-          </div>
+        <div id="guess-buttons" class="flex flex-wrap justify-center gap-4 mb-6">
+          <button class="guess-btn bg-rose-100 hover:bg-rose-200 text-amber-950 px-8 py-4 rounded-lg shadow-md transition-all duration-300 hover:scale-105 cursor-pointer font-semibold border-2 border-rose-300 text-xl">
+            <span id="days-option-1">0</span> días
+          </button>
+          <button class="guess-btn bg-rose-100 hover:bg-rose-200 text-amber-950 px-8 py-4 rounded-lg shadow-md transition-all duration-300 hover:scale-105 cursor-pointer font-semibold border-2 border-rose-300 text-xl">
+            <span id="days-option-2">0</span> días
+          </button>
+          <button class="guess-btn bg-rose-100 hover:bg-rose-200 text-amber-950 px-8 py-4 rounded-lg shadow-md transition-all duration-300 hover:scale-105 cursor-pointer font-semibold border-2 border-rose-300 text-xl">
+            <span id="days-option-3">0</span> días
+          </button>
         </div>
         
-        <!-- Lista de logros -->
-        <div id="achievements-list" class="text-left space-y-6 max-w-xl mx-auto">
-          <div class="seq-item">
-            <p class="text-lg md:text-xl text-neutral-800">
-              <span class="font-bold text-amber-800">Y en esos días...</span>
-            </p>
-          </div>
-          
-          <div class="seq-item pl-4">
-            <p class="text-lg md:text-xl text-neutral-800">
-              • Intercambiamos un aproximado de <span class="font-bold text-amber-800">215 "te amo"</span> (por chat) 💌
-            </p>
-          </div>
-          
-          <div class="seq-item pl-4">
-            <p class="text-lg md:text-xl text-neutral-800 mb-3">
-              • Vimos varias series y películas:
-            </p>
-            
-            <!-- Carrusel de imágenes -->
-            <div id="media-carousel" class="flex gap-4 overflow-x-auto py-2 px-2 seq-item">
-              <img src="/placeholder-peli1.jpg" alt="Película 1" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
-              <img src="/placeholder-peli2.jpg" alt="Película 2" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
-              <img src="/placeholder-serie1.jpg" alt="Serie 1" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
-              <img src="/placeholder-serie2.jpg" alt="Serie 2" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
-              <img src="/placeholder-peli3.jpg" alt="Película 3" class="w-32 h-48 object-cover rounded-lg shadow-md flex-shrink-0">
-            </div>
-          </div>
-          
-          <div class="seq-item pl-4">
-            <p class="text-lg md:text-xl text-neutral-800">
-              • Compartimos nuestro <span class="font-bold text-amber-800">primer viaje solos</span> ✈️
-            </p>
-          </div>
-          
-          <div class="seq-item pl-4">
-            <p class="text-lg md:text-xl text-neutral-800">
-              • Nos <span class="font-bold text-amber-800">recibimos</span> 🎓
-            </p>
-          </div>
-          
-          <div class="seq-item pl-4">
-            <p class="text-lg md:text-xl text-neutral-800">
-              • Y nos sacamos <span class="font-bold text-amber-800">varias fotitos</span> 📸
-            </p>
-          </div>
-        </div>
-        
-        <!-- Botón para avanzar -->
-        <div id="scene3-next-btn" class="mt-10 seq-item opacity-0 transition-opacity duration-500">
-          <img
-            id="scene3-continue-btn"
-            src="/carbonara.png"
-            alt="Continue"
-            class="w-20 cursor-pointer pasta-button mx-auto"
-          />
-          <p class="text-xs text-neutral-600 mt-2">Continuar con la carbonara</p>
+        <div id="guess-feedback" class="text-lg font-semibold opacity-0 transition-opacity duration-500">
+          <p id="correct-message" class="text-green-700 hidden text-2xl font-caveat">The lion is safe.</p>
+          <p id="incorrect-message" class="text-red-700 hidden text-xl font-caveat">The lion is afraid. Try again.</p>
         </div>
       </div>
     </section>
+
+    <!-- Scene 4: Carousel -->
+    <section id="scene-4" class="scene flex items-center justify-center">
+      <div class="w-full max-w-4xl px-4">
+        <h2 id="carousel-title" class="text-2xl md:text-5xl font-caveat font-bold text-amber-950 text-center mb-12">
+          Y en esos <span id="days-count">215</span> días...
+        </h2>
+        
+        <div class="relative">
+          <div id="carousel-content" class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 min-h-[500px] flex items-center justify-center transition-all duration-500">
+          </div>
+          
+          <!-- SUSHI ARROWS for main carousel -->
+          <button id="prev-arrow" class="absolute left-0 top-1/2 -translate-y-1/2 -ml-4 md:-ml-8 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-all duration-300 z-10 sushi-hover-effect">
+            <img src="/sushi-ds.png" alt="Previous" class="w-full h-full transform rotate-180">
+          </button>
+
+          <button id="next-arrow" class="absolute right-0 top-1/2 -translate-y-1/2 -mr-4 md:-mr-8 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition-all duration-300 z-10 sushi-hover-effect">
+            <img src="/sushi-ds.png" alt="Next" class="w-full h-full">
+          </button>
+          
+          <div id="carousel-dots" class="flex justify-center gap-3 mt-8"></div>
+        </div>
+
+        <div id="final-button-container" class="mt-8 opacity-0 transition-opacity duration-300 flex justify-center">
+          <button id="continue-to-final-btn" class="bg-rose-400 hover:bg-rose-500 text-white px-8 py-3 rounded-full shadow-lg transition-all duration-300 hover:scale-105 font-caveat text-xl">
+            Continuar →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 5: Final Message -->
+    <section id="scene-5" class="scene flex flex-col items-center justify-center py-6">
+      <div class="final-message-container max-w-3xl w-full text-neutral-800 px-8 mx-auto">
+        <div id="final-text-sequence" class="space-y-4 text-lg md:text-xl leading-relaxed font-caveat text-center">
+          <p class="final-seq-line">Y si bien listé muchas cosas, no todas quedaron registradas en formato físico.</p>
+          
+          <p class="final-seq-line">Muchas cosas quedan guardadas en mi retina, mis emociones, y mi memoria.</p>
+          
+          <p class="final-seq-line">Como cuando nos la pasamos hablando en aquella noche de sushi.</p>
+          <p class="final-seq-line">O cuando bailamos juntos en año nuevo.</p>
+          <p class="final-seq-line">O cuando tuvimos esa noche con música de jazz en tu cuarto, viendo a la ciudad deslumbrando en su magia nocturna, y mientras vos hablabas, me surgió el pensamiento: <span class="font-semibold text-rose-600">te amo</span>.</p>
+          
+          <p class="final-seq-line mt-4">Espero que todo esto te transmita lo que siento por vos, y que entiendas por qué me afecta tanto cuando me pongo tristonia.</p>
+          
+          <p class="final-seq-line">Es la maldición de sentir todo tan intenso, pero por suerte del otro lado hay alguien que me busca entender y me contiene.</p>
+          
+          <p class="final-seq-line font-semibold text-2xl text-amber-950">Alguien que me ama.</p>
+          
+          <p class="final-seq-line mt-4">Me encantaría poder llenarte de amor por tu día especial, pero espero que al menos esto te transmita todas esas ganas que tengo de abrazarte, mimarte y llenarte de besitos.</p>
+          
+          <p class="final-seq-line font-bold text-4xl text-rose-600 mt-6">Te amo bonito 💖</p>
+        </div>
+        
+        <div id="final-next-button-container" class="mt-4 opacity-0 transition-opacity duration-300 flex flex-col items-center">
+          <img id="final-next-line-btn" src="/carbonara.png" alt="Next line" class="w-16 cursor-pointer pasta-button" />
+          <p class="text-sm text-neutral-600 mt-2">Trust the carbonara</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fullscreen Button -->
+    <button onclick="document.documentElement.requestFullscreen()" 
+      class="fixed bottom-4 right-4 bg-white/30 backdrop-blur-sm text-[10px] p-2 rounded-full opacity-50 hover:opacity-100 transition-opacity z-50">
+      Full Screen ⛶
+    </button>
+
+    <!-- Music Controls -->
+    <div id="music-controls" class="fixed bottom-4 left-4 bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg p-4 opacity-0 transition-opacity duration-500 z-50">
+      <div class="flex items-center gap-4">
+        <button id="play-pause-btn" class="bg-rose-400 hover:bg-rose-500 text-white rounded-full w-10 h-10 flex items-center justify-center transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+          </svg>
+        </button>
+        
+        <div class="flex items-center gap-2">
+          <div id="volume-icon" class="text-neutral-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+          </div>
+          <input type="range" id="volume-slider" min="0" max="100" value="55" 
+            class="w-24 h-2 bg-neutral-300 rounded-lg appearance-none cursor-pointer accent-rose-400">
+        </div>
+        
+        <div class="text-xs text-neutral-600 font-caveat hidden md:block">
+          Somethin' Stupid
+        </div>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-[100] hidden items-center justify-center p-4">
+      <button onclick="window.closeLightbox()" class="absolute top-5 right-5 text-white hover:text-amber-400 transition group">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      
+      <div class="flex items-center justify-between w-full max-w-4xl px-4 mt-4">
+        <button onclick="window.lightboxPrev()" class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition hover:scale-110 active:scale-95">
+          <img id="lightbox-prev-img" src="/wine.png" class="w-full h-full object-contain transform rotate-180" alt="Prev">
+        </button>
+        
+        <div class="flex flex-col items-center justify-center flex-1">
+          <img id="lightbox-img" src="" class="max-w-full max-h-[70vh] rounded-lg shadow-2xl object-contain">
+          <p id="lightbox-caption" class="text-white text-xl font-caveat mt-6 text-center"></p>
+        </div>
+        
+        <button onclick="window.lightboxNext()" class="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center transition hover:scale-110 active:scale-95">
+          <img id="lightbox-next-img" src="/wine.png" class="w-full h-full object-contain" alt="Next">
+        </button>
+      </div>
+    </div>
+
+    <!-- Audio Element -->
+    <audio id="bg-music" loop>
+      <source src="/sth-stupid.mp3" type="audio/mpeg">
+      Tu navegador no soporta el elemento de audio.
+    </audio>
 
     <script type="module" src="/src/main.js"></script>
   </body>
