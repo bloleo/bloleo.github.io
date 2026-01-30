@@ -4,23 +4,25 @@
 
 
 .scene {
-  display: none; /* Quitamos position: absolute */
+  display: none;
   width: 100%;
   min-height: 100vh;
-  padding: 2rem 1rem; /* Agregamos aire arriba y abajo */
+  padding: 2rem 1rem;
   flex-direction: column;
 }
 
 .scene--active {
-  display: flex; /* Solo la escena activa ocupa espacio */
+  display: flex;
 }
 
 .scene--fade-out {
   animation: fadeOut 1.2s ease forwards;
+  will-change: opacity;
 }
 
 .scene--fade-in {
   animation: fadeIn 1.2s ease forwards;
+  will-change: opacity;
 }
 
 @keyframes fadeOut {

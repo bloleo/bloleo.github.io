@@ -169,9 +169,45 @@ sceneManager.registerScene('scene-mail', {
 });
 
 mailbox.addEventListener("click", () => {
+  // Primero transicionar la escena (sin esperar al audio)
+  mailbox.style.transform = 'scale(0.9) rotate(-10deg)';
+  mailbox.style.transition = 'all 0.3s ease';
+  sceneManager.transitionTo('scene-letter');
+  
+  // Intentar reproducir música asíncronamente (no bloquear si falla)
   if (music && !isMusicPlaying) {
-    fadeInAudio(music);
+    fadeInAudio(music).catch(err => {
+      console.log('Audio autoplay blocked:', err);
+      // Mostrar controles incluso si falla
+      setTimeout(() => {
+        const musicControls = document.getElementById('music-controls');
+        if (musicControls) {
+          musicControls.classList.remove('opacity-0');
+          musicControls.classList.add('opacity-100');
+        }
+      }, 1000);
+    });
     isMusicPlaying = true;
+  }
+});
+
+async function fadeInAudio(audioElement) {
+  try {
+    audioElement.volume = 0;
+    await audioElement.play(); // Usar await para manejar la promesa
+    
+    let vol = 0;
+    const targetVol = 0.3;
+    const interval = setInterval(() => {
+      if (vol < targetVol) {
+        vol += 0.03;
+        audioElement.volume = Math.min(vol, targetVol);
+      } else {
+        clearInterval(interval);
+      }
+    }, 200);
+    
+    // Mostrar controles después de que el audio comienza
     setTimeout(() => {
       const musicControls = document.getElementById('music-controls');
       if (musicControls) {
@@ -179,26 +215,10 @@ mailbox.addEventListener("click", () => {
         musicControls.classList.add('opacity-100');
       }
     }, 1000);
+  } catch (error) {
+    console.log('Could not play audio:', error);
+    throw error; // Re-lanzar para que el catch externo lo maneje
   }
-
-  mailbox.style.transform = 'scale(0.9) rotate(-10deg)';
-  mailbox.style.transition = 'all 0.3s ease';
-  sceneManager.transitionTo('scene-letter');
-});
-
-function fadeInAudio(audioElement) {
-  audioElement.volume = 0;
-  audioElement.play();
-  let vol = 0;
-  const targetVol = 0.3;
-  const interval = setInterval(() => {
-    if (vol < targetVol) {
-      vol += 0.03;
-      audioElement.volume = Math.min(vol, targetVol);
-    } else {
-      clearInterval(interval);
-    }
-  }, 200);
 }
 
 function setupMusicControls() {
