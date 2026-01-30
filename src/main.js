@@ -114,33 +114,39 @@ class SceneManager {
     });
   }
 
-  transitionTo(sceneId, duration = 800, isBack = false) {
+transitionTo(sceneId, duration = 800) {
   const oldScene = this.scenes.get(this.currentSceneId);
   const newScene = this.scenes.get(sceneId);
 
   if (!newScene) return;
 
-  // 1. Desactivar escena anterior
+  // 1. Desvanecer escena vieja
   if (oldScene) {
     oldScene.element.classList.add('scene--fade-out');
+    oldScene.element.classList.remove('scene--fade-in');
+    
     setTimeout(() => {
       oldScene.element.classList.remove('scene--active', 'scene--fade-out');
       oldScene.element.style.display = 'none';
     }, duration);
   }
 
-  // 2. Activar nueva escena
+  // 2. Preparar nueva escena
   this.currentSceneId = sceneId;
+  
+  // Pequeño truco: usamos un requestAnimationFrame para asegurar que el display:flex
+  // se aplique antes de que empiece la animación de opacidad
   newScene.element.style.display = 'flex';
   
-  // LA CLAVE: Resetear el scroll a la posición 0 apenas aparece la escena
-  window.scrollTo({ top: 0, behavior: 'instant' }); 
-  
-  newScene.element.classList.add('scene--active', 'scene--fade-in');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+
+  // Agregamos la clase de entrada en el siguiente "frame" del navegador
+  requestAnimationFrame(() => {
+    newScene.element.classList.add('scene--active', 'scene--fade-in');
+    newScene.element.classList.remove('scene--fade-out');
+  });
 
   if (newScene.onEnter) newScene.onEnter();
-  
-  // Actualizar visibilidad del botón de volver
   updateBackButtonVisibility();
 }
 
